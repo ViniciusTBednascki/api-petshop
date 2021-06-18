@@ -17,11 +17,20 @@ class Fornecedor {
             email: this.email,
             categoria: this.categoria
         })
-
         this.id = resultado.id
         this.dataCriacao = resultado.dataCriacao
         this.dataAtualizacao = resultado.dataAtualizacao
         this.versao = resultado.versao
+    }
+
+    async carregar() {
+        const encontrado = await tabelaFornecedor.buscarPorId(this.id)
+        this.empresa = encontrado.empresa
+        this.email = encontrado.email
+        this.categoria = encontrado.categoria
+        this.dataCriacao = encontrado.dataCriacao
+        this.dataAtualizacao = encontrado.dataAtualizacao
+        this.versao = encontrado.versao
     }
 }
 
