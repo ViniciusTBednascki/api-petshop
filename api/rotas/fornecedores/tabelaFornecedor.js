@@ -3,7 +3,9 @@ const NaoEncontrado = require('../../erros/NaoEncontrado')
 
 module.exports = {
     listar () {
-        return Modelo.findAll()
+        return Modelo.findAll(
+            { raw:true } //assim o sequelize ira devolver um objeto puro sem ser um instancia do proprio Sequelize
+            )
     },
     inserir(fornecedor) {
         return Modelo.create(fornecedor)
