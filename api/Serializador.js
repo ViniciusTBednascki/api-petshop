@@ -48,8 +48,18 @@ class SerializadorFornecedor extends Serializador {
     }
 }
 
+class SerializadorErro extends Serializador {
+    constructor(contentType, camposExtras) {
+        super()
+        this.contentType = contentType
+        this.camposPublicos = ['id', 'mensagem'].concat(camposExtras || [])
+        
+    }
+}
+
 module.exports = {
     Serializador: Serializador,
     SerializadorFornecedor: SerializadorFornecedor,
+    SerializadorErro: SerializadorErro,
     formatosAceitos: ['application/json']
 }
