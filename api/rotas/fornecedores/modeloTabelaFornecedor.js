@@ -18,7 +18,7 @@ const colunas = {
 
 const opcoes = {
     freezeTableName: true,
-    tabelName: 'fornecedores',
+    tableName: 'fornecedores',
     timestamps: true,
     createdAt: 'dataCriacao',
     updatedAt: 'dataAtualizacao',
