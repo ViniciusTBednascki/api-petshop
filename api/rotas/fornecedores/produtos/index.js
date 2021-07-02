@@ -8,4 +8,7 @@ roteador.get('/', async (requisicao, resposta) => {
     )
 })
 
+const roteadorReclamacoes = require('./reclamacoes')
+roteador.use('/:idProduto/reclamacoes', roteadorReclamacoes)
+
 module.exports = roteador
