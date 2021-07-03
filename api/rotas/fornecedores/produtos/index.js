@@ -25,7 +25,7 @@ roteador.post('/', async (requisicao, resposta, proximo) => {
         )
         resposta.status(201)
         resposta.send(
-            serializador.serializar(produtos)
+            serializador.serializar(produto)
         )
     } catch (erro) {
         proximo(erro)
@@ -56,8 +56,27 @@ roteador.get('/:id', async (requisicao, resposta, proximo) => {
             ['preco', 'estoque', 'fornecedor', 'dataCriacao', 'dataAtualizacao', 'versao']
         )
         resposta.send(
-            serializador.serializar(produtos)
+            serializador.serializar(produto)
         )
+    } catch(erro) {
+        proximo(erro)
+    }
+})
+
+roteador.put('/:id', async (requisicao, resposta, proximo) => {
+    try {
+        const dados = Object.assign(
+            {},
+            requisicao.body,
+            {
+                id: requisicao.params.id,
+                fornecedor: requisicao.fornecedor.id
+            }
+        )
+        const produto = new Produto(dados)
+        await produto.atualizar()
+        resposta.status(204)
+        resposta.end()
     } catch(erro) {
         proximo(erro)
     }
