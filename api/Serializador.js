@@ -91,7 +91,7 @@ class SerializadorErro extends Serializador {
 module.exports = {
     Serializador: Serializador,
     SerializadorFornecedor: SerializadorFornecedor,
-    SerializadorProduto: SerializadorProduto,
     SerializadorErro: SerializadorErro,
+    SerializadorProduto: SerializadorProduto,
     formatosAceitos: ['application/json', 'application/xml']
 }

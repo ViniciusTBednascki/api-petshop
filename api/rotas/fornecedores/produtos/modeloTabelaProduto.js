@@ -10,7 +10,7 @@ const colunas = {
         type: Sequelize.DOUBLE,
         allowNull: false
     },
-    preco: {
+    estoque: {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
