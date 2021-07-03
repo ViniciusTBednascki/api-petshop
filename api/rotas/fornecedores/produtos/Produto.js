@@ -12,7 +12,7 @@ class Produto {
         this.versao = versao
     }
 
-    validar () {
+    validar() {
         if(typeof this.titulo !== 'string' || this.titulo.length === 0) {
             throw new Error('O campo titulo está inválido')
         }
@@ -37,8 +37,18 @@ class Produto {
         this.versao = resultado.versao
     }
 
-    apagar () {
+    apagar() {
         return Tabela.remover(this.id, this.fornecedor)
+    }
+
+    async carregar() {
+        const produto = await Tabela.pegarPorId(this.id, this.fornecedor)
+        this.titulo = produto.titulo
+        this.preco = produto.preco
+        this.estoque = produto.estoque
+        this.dataCriacao = produto.dataCriacao
+        this.dataAtualizacao = produto.dataAtualizacao
+        this.versao = produto.versao
     }
 }
 
