@@ -30,6 +30,7 @@ app.use((requisicao, resposta, proximo) => {
 
 app.use((requisicao, resposta, proximo) => {
     resposta.set('X-Powered-By', "Gatito Petshop")
+    resposta.set('Access-Control-Allow-Origin', '*')
     proximo()
 })
 
