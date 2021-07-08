@@ -4,6 +4,13 @@ const Fornecedor = require('./Fornecedor')
 const SerializadorFornecedor = require('../../Serializador').SerializadorFornecedor
 const TabelaProduto = require('./produtos/tabelaProduto')
 
+roteador.options('/', (requisicao, resposta) => {
+    resposta.set('Access-Control-Allow-Methods', 'GET, POST')
+    resposta.set('Access-Control-Allow-Headers', 'Content-Type')
+    resposta.status(204)
+    resposta.end()
+})
+
 roteador.get('/', async (requisicao, resposta) => {
     const resultados = await TabelaFornecedor.listar()
     resposta.status(200)
@@ -26,12 +33,19 @@ roteador.post('/', async (requisicao, resposta, proximo) => {
         )
         resposta.send(
             serializador.serializar(fornecedor)
-            )
-        } catch(erro) {
-            proximo(erro)
-        }
-    })
-    
+        )
+    } catch(erro) {
+        proximo(erro)
+    }
+})
+
+roteador.options('/:idFornecedor', (requisicao, resposta) => {
+    resposta.set('Access-Control-Allow-Methods', 'GET, PUT, DELETE')
+    resposta.set('Access-Control-Allow-Headers', 'Content-Type')
+    resposta.status(204)
+    resposta.end()
+})
+
 roteador.get('/:idFornecedor', async (requisicao, resposta, proximo) => {
     try{
         const id = requisicao.params.idFornecedor
@@ -84,9 +98,9 @@ roteador.post('/:idFornecedor/calcular-reposicao-de-estoque', async (requisicao,
         resposta.send({
             mensagem: `${produtos.length} precisam de reposição de estoque`
         })
-      } catch (erro) {
+    } catch (erro) {
         proximo(erro)
-      }
+    }
 })
 
 const roteadorProdutos = require('./produtos')
